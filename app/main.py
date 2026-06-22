@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 
 app = FastAPI(title="AI Log Analyzer")
+from app.service.incident_service import analyze_incident_flow
 
 
 @app.get("/health")
@@ -8,10 +9,6 @@ def health():
     return {"status": "ok"}
 
 
-@app.get("/analyze")
+@app.post("/analyze")
 def analyze():
-    """Main workflow endpoint.
-    TODO (Step 8 - Expose Incident Analysis API)
-    TODO (Task 5 - API Response)
-    """
-    raise NotImplementedError("Implement Step 8 / Task 5")
+    return analyze_incident_flow()

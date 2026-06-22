@@ -1,12 +1,15 @@
+from vertexai.generative_models import GenerativeModel
 
-def format_logs(logs: list[dict]) -> str:
-    """Prepare logs before sending them to the model.
+from app.config.confs import GEMINI_MODEL
 
-    TODO (Step 7 - Analyze Incident with Gemini)
-    TODO (Task 2 - Log Context)
-    """
-    raise NotImplementedError("Implement Task 2")
+model = GenerativeModel(GEMINI_MODEL)
 
+
+def format_logs(logs):
+    return "\n".join(
+        f"[{log.get('@timestamp')}] {log.get('serviceName')} - {log.get('message')}"
+        for log in logs
+    )
 
 def build_prompt(log_text: str) -> str:
     """Build the prompt for Gemini.
@@ -15,11 +18,24 @@ def build_prompt(log_text: str) -> str:
     """
     raise NotImplementedError("Implement Task 3")
 
+def analyze_incident(logs):
+    formatted_logs = format_logs(logs)
 
-def analyze_incident(logs: list[dict]):
-    """Call Gemini and return the analysis result.
+    prompt = f"""
+    You are a Senior Site Reliability Engineer specializing in incident analysis.
 
-    TODO (Step 7 - Analyze Incident with Gemini)
-    TODO (Task 4 - Confidence Score)
+    Analyze the following logs and return a JSON response with the following fields:
+    - root_cause
+    - explanation
+    - severity (LOW, MEDIUM, HIGH, CRITICAL)
+    - suggested_actions
+
+    Logs:
+    {formatted_logs}
+
+    Respond ONLY with valid JSON. Do not include any additional text.
     """
-    raise NotImplementedError("Implement Step 7 / Task 4")
+
+    response = model.generate_content(prompt)
+
+    return response.text

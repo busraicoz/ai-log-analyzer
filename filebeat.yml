@@ -7,7 +7,7 @@ filebeat.inputs:
 
 processors:
   - dissect:
-      tokenizer: "%{level} %{serviceName} %{traceId} %{message}"
+      tokenizer: "%{level} %{serviceName} %{message}"
       field: "message"
       target_prefix: ""
 

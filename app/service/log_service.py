@@ -1,22 +1,45 @@
 from elasticsearch import Elasticsearch
 
-from app.config.confs import ELASTICSEARCH_INDEX, ELASTICSEARCH_URL, RETRIEVAL_SIZE, DETECTION_THRESHOLD
+from app.config.confs import ELASTICSEARCH_URL
+
 es = Elasticsearch(ELASTICSEARCH_URL)
 
 
-def fetch_recent_errors(index: str = ELASTICSEARCH_INDEX, size: int = RETRIEVAL_SIZE) -> list[dict]:
-    """Retrieve recent error logs from Elasticsearch.
+def fetch_recent_errors(index="mortgage-logs-*", size=50):
+    query = {
+        "size": size,
+        "query": {
+            "bool": {
+                "must": [
+                    {
+                        "match": {
+                            "message": "ERROR"
+                        }
+                    },
+                    {
+                        "range": {
+                            "@timestamp": {
+                                "gte": "now-15m"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "sort": [
+            {"@timestamp": {"order": "desc"}}
+        ]
+    }
 
-    TODO (Step 5 - Retrieve Failure Logs)
-    TODO (Task 2 - Log Context)
-    """
-    raise NotImplementedError("Implement Step 5 / Task 2")
+    response = es.search(index=index, body=query)
+
+    return [hit["_source"] for hit in response["hits"]["hits"]]
 
 
-def detect_failure_spike(logs: list[dict], threshold: int = DETECTION_THRESHOLD) -> bool:
-    """Detect whether the current error volume should trigger analysis.
+def detect_failure_spike(logs, threshold=5):
+    if not logs:
+        return False
 
-    TODO (Step 6 - Failure Spike Detection)
-    TODO (Task 1 - Failure Detection)
-    """
-    raise NotImplementedError("Implement Step 6 / Task 1")
+    error_count = len(logs)
+
+    return error_count >= threshold
