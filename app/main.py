@@ -8,7 +8,7 @@ def health():
     return {"status": "ok"}
 
 
-@app.get("/analyze")
+@app.post("/analyze")
 def analyze():
     """Main workflow endpoint.
     TODO (Step 8 - Expose Incident Analysis API)
