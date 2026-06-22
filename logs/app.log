@@ -1,47 +1,46 @@
-2026-06-22T10:00:01Z INFO api-gateway t1 Incoming request POST /mortgage/apply userId=123
-2026-06-22T10:00:02Z INFO auth-service t1 User authenticated successfully userId=123
-2026-06-22T10:00:03Z INFO mortgage-service t1 Mortgage application started applicationId=app-001
-2026-06-22T10:00:04Z INFO db t1 INSERT INTO applications SUCCESS applicationId=app-001
-2026-06-22T10:00:05Z INFO mortgage-service t1 Mortgage application completed applicationId=app-001
-2026-06-22T10:01:01Z INFO api-gateway t2 Incoming request POST /mortgage/apply userId=456
-2026-06-22T10:01:02Z ERROR auth-service t2 Authentication failed invalid credentials userId=456
-2026-06-22T10:01:02Z WARN api-gateway t2 Returning 401 Unauthorized
-2026-06-22T10:02:01Z INFO api-gateway t3 Incoming request POST /mortgage/apply userId=789
-2026-06-22T10:02:02Z INFO auth-service t3 User authenticated successfully userId=789
-2026-06-22T10:02:03Z INFO mortgage-service t3 Mortgage application started applicationId=app-003
-2026-06-22T10:02:04Z ERROR db t3 Database connection timeout
-2026-06-22T10:02:05Z ERROR mortgage-service t3 Failed to persist application applicationId=app-003
-2026-06-22T10:02:05Z WARN api-gateway t3 Returning 500 Internal Server Error
-2026-06-22T10:03:01Z INFO api-gateway t4 Incoming request GET /mortgage/status userId=123
-2026-06-22T10:03:02Z INFO mortgage-service t4 Fetching application status applicationId=app-001
-2026-06-22T10:03:03Z INFO db t4 SELECT SUCCESS applicationId=app-001
-2026-06-22T10:03:03Z INFO api-gateway t4 Returning 200 OK
-2026-06-22T10:04:01Z INFO api-gateway t5 Incoming request POST /mortgage/apply userId=101
-2026-06-22T10:04:02Z INFO auth-service t5 User authenticated successfully userId=101
-2026-06-22T10:04:03Z INFO mortgage-service t5 Mortgage application started applicationId=app-005
-2026-06-22T10:04:04Z INFO db t5 INSERT SUCCESS applicationId=app-005
-2026-06-22T10:04:05Z INFO mortgage-service t5 Risk assessment started
-2026-06-22T10:04:06Z WARN mortgage-service t5 Slow response from credit-service
-2026-06-22T10:04:08Z INFO mortgage-service t5 Risk assessment completed
-2026-06-22T10:04:09Z INFO api-gateway t5 Returning 200 OK
-2026-06-22T10:05:00Z INFO api-gateway t6 Incoming request POST /mortgage/apply userId=999
-2026-06-22T10:05:01Z ERROR db t6 Database connection timeout
-2026-06-22T10:05:02Z ERROR db t6 Database connection timeout
-2026-06-22T10:05:03Z ERROR db t6 Database connection timeout
-2026-06-22T10:05:04Z ERROR mortgage-service t6 Application failure due to DB outage
-2026-06-22T10:05:05Z WARN api-gateway t6 Returning 503 Service Unavailable
-2026-06-22T10:05:10Z ERROR db t7 Database connection timeout
-2026-06-22T10:05:11Z ERROR db t7 Database connection timeout
-2026-06-22T10:05:12Z ERROR db t7 Database connection timeout
-2026-06-22T10:05:13Z WARN api-gateway t7 Returning 503 Service Unavailable
-2026-06-22T10:06:01Z INFO api-gateway t8 Incoming request POST /mortgage/apply userId=202
-2026-06-22T10:06:02Z INFO auth-service t8 User authenticated successfully userId=202
-2026-06-22T10:06:03Z INFO mortgage-service t8 Mortgage application started applicationId=app-008
-2026-06-22T10:06:04Z INFO db t8 INSERT SUCCESS applicationId=app-008
-2026-06-22T10:06:05Z INFO api-gateway t8 Returning 200 OK
-2026-06-22T10:05:04Z ERROR mortgage-service t6 Application failure due to DB outage
-2026-06-22T10:05:05Z WARN api-gateway t6 Returning 503 Service Unavailable
-2026-06-22T10:05:10Z ERROR db t7 Database connection timeout
-2026-06-22T10:05:11Z ERROR db t7 Database connection timeout
-2026-06-22T10:05:12Z ERROR db t7 Database connection timeout
-2026-06-22T10:05:13Z WARN api-gateway t7 Returning 503 Service Unavailable
+INFO api-gateway t1 Incoming request POST /mortgage/apply userId=123
+INFO auth-service t1 User authenticated successfully userId=123
+INFO mortgage-service t1 Mortgage application started applicationId=app-001
+INFO db t1 INSERT INTO applications SUCCESS applicationId=app-001
+INFO mortgage-service t1 Mortgage application completed applicationId=app-001
+INFO api-gateway t2 Incoming request POST /mortgage/apply userId=456
+ERROR auth-service t2 Authentication failed invalid credentials userId=456
+WARN api-gateway t2 Returning 401 Unauthorized
+INFO api-gateway t3 Incoming request POST /mortgage/apply userId=789
+INFO auth-service t3 User authenticated successfully userId=789
+INFO mortgage-service t3 Mortgage application started applicationId=app-003
+ERROR db t3 Database connection timeout
+ERROR mortgage-service t3 Failed to persist application applicationId=app-003
+WARN api-gateway t3 Returning 500 Internal Server Error
+INFO api-gateway t4 Incoming request GET /mortgage/status userId=123
+INFO mortgage-service t4 Fetching application status applicationId=app-001
+INFO db t4 SELECT SUCCESS applicationId=app-001
+INFO api-gateway t4 Returning 200 OK
+INFO api-gateway t5 Incoming request POST /mortgage/apply userId=101
+INFO auth-service t5 User authenticated successfully userId=101
+INFO mortgage-service t5 Mortgage application started applicationId=app-005
+INFO db t5 INSERT SUCCESS applicationId=app-005
+INFO mortgage-service t5 Risk assessment started
+WARN mortgage-service t5 Slow response from credit-service
+INFO mortgage-service t5 Risk assessment completed
+INFO api-gateway t5 Returning 200 OK
+INFO api-gateway t6 Incoming request POST /mortgage/apply userId=999
+ERROR db t6 Database connection timeout
+ERROR db t6 Database connection timeout
+ERROR db t6 Database connection timeout
+ERROR mortgage-service t6 Application failure due to DB outage
+WARN api-gateway t6 Returning 503 Service Unavailable
+ERROR db t7 Database connection timeout
+ERROR db t7 Database connection timeout
+WARN api-gateway t7 Returning 503 Service Unavailable
+INFO api-gateway t8 Incoming request POST /mortgage/apply userId=202
+INFO auth-service t8 User authenticated successfully userId=202
+INFO mortgage-service t8 Mortgage application started applicationId=app-008
+INFO db t8 INSERT SUCCESS applicationId=app-008
+INFO api-gateway t8 Returning 200 OK
+ERROR mortgage-service t6 Application failure due to DB outage
+WARN api-gateway t6 Returning 503 Service Unavailable
+ERROR db t7 Database connection timeout
+ERROR db t7 Database connection timeout
+ERROR db t7 Database connection timeout
+WARN  api-gateway t7 Returning 503 Service Unavailable
