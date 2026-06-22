@@ -1,9 +1,7 @@
-from app.config import GEMINI_MODEL
-
 
 def format_logs(logs: list[dict]) -> str:
     """Prepare logs before sending them to the model.
-
+    TODO (Step 7 - Analyze Incident with Gemini)
     TODO (Task 2 - Log Context)
     """
     raise NotImplementedError("Implement Task 2")

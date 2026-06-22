@@ -1,0 +1,22 @@
+filebeat.inputs:
+  - type: filestream
+    id: mortgage-logs
+    enabled: true
+    paths:
+      - /logs/app.log
+
+processors:
+  - dissect:
+      tokenizer: "%{level} %{serviceName} %{traceId} %{message}"
+      field: "message"
+      target_prefix: ""
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+  index: "mortgage-logs-%{+yyyy.MM.dd}"
+
+logging.level: info
+
+setup.template.name: "mortgage-logs"
+setup.template.pattern: "mortgage-logs-*"
+setup.ilm.enabled: false

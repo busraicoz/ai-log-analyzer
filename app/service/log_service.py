@@ -1,6 +1,6 @@
 from elasticsearch import Elasticsearch
 
-from app.config.confs import ELASTICSEARCH_INDEX, RETRIEVAL_SIZE, DETECTION_THRESHOLD
+from app.config.confs import ELASTICSEARCH_INDEX, ELASTICSEARCH_URL, RETRIEVAL_SIZE, DETECTION_THRESHOLD
 es = Elasticsearch(ELASTICSEARCH_URL)
 
 

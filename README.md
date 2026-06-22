@@ -24,6 +24,7 @@ Docker build and run:
 - Step 5 — Retrieve Failure Logs → `app/service/log_service.py`
 - Step 6 — Failure Spike Detection → `app/service/log_service.py`
 - Step 7 — Analyze Incident with Gemini → `app/service/ai_service.py`
+- Step 8 — Expose Incident Analysis API → `app/incident_service.py`
 - Step 8 — Expose Incident Analysis API → `app/main.py`
 
 ## Tasks
